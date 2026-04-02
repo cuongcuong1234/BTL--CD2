@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dang_nhap.dart';
 import 'danh_sach_lop.dart';
 import 'quan_ly_sv.dart';
+import 'quan_ly_nghanh.dart';
 
 class home extends StatelessWidget {
   const home({super.key});
@@ -15,81 +16,230 @@ class home extends StatelessWidget {
             // Banner Section
             Container(
               width: double.infinity,
-              height: 250,
+              height: 350,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Colors.blue[900]!, Colors.blue[700]!],
+                  colors: [const Color(0xFF1a3a52), const Color(0xFF0d2a42)],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
+                image: DecorationImage(
+                  image: AssetImage('assets/banner_bg.png'),
+                  fit: BoxFit.cover,
+                  onError: (exception, stackTrace) {
+                    // Fallback gradient if image not found
+                  },
+                ),
               ),
-              child: Stack(
-                children: [
-                  // Background pattern
-                  Positioned(
-                    top: 20,
-                    left: 20,
-                    child: Container(
-                      width: 60,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white30, width: 2),
-                        borderRadius: BorderRadius.circular(8),
+              child: Container(
+                color: Colors.black.withOpacity(0.3),
+                child: Stack(
+                  children: [
+                    // Decorative background shapes
+                    Positioned(
+                      top: 30,
+                      left: 20,
+                      child: Opacity(
+                        opacity: 0.08,
+                        child: Container(
+                          width: 80,
+                          height: 80,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.white, width: 2),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                  // Main content
-                  Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(12),
+                    Positioned(
+                      top: 40,
+                      right: 30,
+                      child: Opacity(
+                        opacity: 0.08,
+                        child: Container(
+                          width: 60,
+                          height: 60,
                           decoration: BoxDecoration(
-                            color: Colors.amber,
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: Colors.white, width: 2),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 80,
+                      right: 40,
+                      child: Opacity(
+                        opacity: 0.08,
+                        child: Container(
+                          width: 100,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(color: Colors.white, width: 2),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 80,
+                      right: 60,
+                      child: Opacity(
+                        opacity: 0.08,
+                        child: Icon(
+                          Icons.auto_awesome,
+                          color: Colors.white,
+                          size: 40,
+                        ),
+                      ),
+                    ),
+                    // Main content - Top logo
+                    Positioned(
+                      top: 30,
+                      left: 0,
+                      right: 0,
+                      child: Center(
+                        child: CircleAvatar(
+                          radius: 50,
+                          backgroundColor: Colors.white,
+                          child: ClipOval(
+                            child: Image.asset(
+                              'assets/logo.png',
+                              width: 95,
+                              height: 95,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) {
+                                return Container(
+                                  width: 95,
+                                  height: 95,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: const Icon(
+                                    Icons.school,
+                                    size: 50,
+                                    color: Color(0xFF1a3a52),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    // Welcome text
+                    Positioned(
+                      top: 135,
+                      left: 0,
+                      right: 0,
+                      child: Center(
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 25,
+                            vertical: 10,
+                          ),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFFFB81C),
                             borderRadius: BorderRadius.circular(8),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.4),
+                                blurRadius: 8,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
                           ),
                           child: const Text(
                             'Welcome',
                             style: TextStyle(
-                              fontSize: 24,
+                              fontSize: 32,
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
+                              letterSpacing: 1.5,
                             ),
                           ),
                         ),
-                        const SizedBox(height: 8),
-                        Container(
-                          padding: const EdgeInsets.all(12),
+                      ),
+                    ),
+                    // Admin text
+                    Positioned(
+                      top: 185,
+                      left: 0,
+                      right: 0,
+                      child: Center(
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 35,
+                            vertical: 12,
+                          ),
                           decoration: BoxDecoration(
-                            color: Colors.amber,
+                            color: const Color(0xFFFFB81C),
                             borderRadius: BorderRadius.circular(8),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.4),
+                                blurRadius: 8,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
                           ),
                           child: const Text(
                             'ADMIN',
                             style: TextStyle(
-                              fontSize: 28,
+                              fontSize: 36,
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
+                              letterSpacing: 2,
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                  // Have a good day text
-                  Positioned(
-                    bottom: 20,
-                    left: 20,
-                    child: const Text(
-                      '🌐 Have a good day',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
                       ),
                     ),
-                  ),
-                ],
+                    // Bottom text
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 14,
+                        ),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFFFB81C),
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20),
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            const Text(
+                              'Have a good day',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.black87,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              'https://eaut.edu.vn',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: Colors.black54,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             // Grid Section
@@ -132,6 +282,14 @@ class home extends StatelessWidget {
                     context: context,
                     icon: Icons.note_outlined,
                     label: 'Quản Lý\nNgành',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const QuanLyNganhScreen(),
+                        ),
+                      );
+                    },
                   ),
                   _buildMenuItem(
                     context: context,
