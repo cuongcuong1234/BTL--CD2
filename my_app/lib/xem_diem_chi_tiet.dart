@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'services/database_service.dart';
 
 class XemDiemChiTietScreen extends StatefulWidget {
   final Map<String, String>? studentInfo;

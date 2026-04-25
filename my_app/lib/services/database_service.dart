@@ -14,6 +14,7 @@ class DatabaseService {
 
   // Collection names
   static const String accountsCollection = 'tai_khoan';
+  static const String scheduleCollection = 'thoi_khoa_bieu';
 
   // Dữ liệu mẫu lịch học
   final List<Map<String, dynamic>> danhSachLichHocMau = [
@@ -100,6 +101,156 @@ class DatabaseService {
         }
 
         print('✅ Đã tạo tài khoản mặc định');
+
+        // ===== TẠO DỮ LIỆU THỜI KHÓA BIỂU MẶC ĐỊNH =====
+        final thoiKhoaBieuDefaults = [
+          // Lớp 001 (Nguyễn Gia Khánh, Nguyễn Văn A)
+          {
+            'maLop': '001',
+            'thu': 'Thứ 2',
+            'thuTu': 2,
+            'mon': 'Lập trình Flutter',
+            'phong': 'P.402',
+            'gio': '07:30-09:30',
+            'giangVien': 'Thầy Nguyễn Văn A'
+          },
+          {
+            'maLop': '001',
+            'thu': 'Thứ 3',
+            'thuTu': 3,
+            'mon': 'Lập trình Flutter',
+            'phong': 'P.402',
+            'gio': '07:30-09:30',
+            'giangVien': 'Thầy Nguyễn Văn A'
+          },
+          {
+            'maLop': '001',
+            'thu': 'Thứ 4',
+            'thuTu': 4,
+            'mon': 'Cấu trúc dữ liệu',
+            'phong': 'Lab 01',
+            'gio': '13:30-15:30',
+            'giangVien': 'Cô Trần Thị B'
+          },
+          {
+            'maLop': '001',
+            'thu': 'Thứ 5',
+            'thuTu': 5,
+            'mon': 'Cơ sở dữ liệu',
+            'phong': 'P.305',
+            'gio': '10:00-12:00',
+            'giangVien': 'Thầy Lê Văn C'
+          },
+          {
+            'maLop': '001',
+            'thu': 'Thứ 7',
+            'thuTu': 7,
+            'mon': 'Mạng máy tính',
+            'phong': 'P.410',
+            'gio': '08:00-10:00',
+            'giangVien': 'Thầy Hoàng Văn D'
+          },
+
+          // Lớp 002 (Vũ Huy Khánh, Nguyễn Văn B)
+          {
+            'maLop': '002',
+            'thu': 'Thứ 2',
+            'thuTu': 2,
+            'mon': 'Cơ sở dữ liệu',
+            'phong': 'P.305',
+            'gio': '08:00-10:00',
+            'giangVien': 'Thầy Lê Văn C'
+          },
+          {
+            'maLop': '002',
+            'thu': 'Thứ 3',
+            'thuTu': 3,
+            'mon': 'Mạng máy tính',
+            'phong': 'P.410',
+            'gio': '10:00-12:00',
+            'giangVien': 'Thầy Hoàng Văn D'
+          },
+          {
+            'maLop': '002',
+            'thu': 'Thứ 4',
+            'thuTu': 4,
+            'mon': 'Lập trình C++',
+            'phong': 'Lab 02',
+            'gio': '07:30-09:30',
+            'giangVien': 'Cô Ngô Thị E'
+          },
+          {
+            'maLop': '002',
+            'thu': 'Thứ 5',
+            'thuTu': 5,
+            'mon': 'Lập trình Flutter',
+            'phong': 'P.402',
+            'gio': '13:30-15:30',
+            'giangVien': 'Thầy Nguyễn Văn A'
+          },
+          {
+            'maLop': '002',
+            'thu': 'Thứ 6',
+            'thuTu': 6,
+            'mon': 'Cấu trúc dữ liệu',
+            'phong': 'Lab 01',
+            'gio': '08:00-10:00',
+            'giangVien': 'Cô Trần Thị B'
+          },
+
+          // Lớp 003 (Ngô Mạnh Kiên)
+          {
+            'maLop': '003',
+            'thu': 'Thứ 2',
+            'thuTu': 2,
+            'mon': 'Lập trình Flutter',
+            'phong': 'P.402',
+            'gio': '10:00-12:00',
+            'giangVien': 'Thầy Nguyễn Văn A'
+          },
+          {
+            'maLop': '003',
+            'thu': 'Thứ 3',
+            'thuTu': 3,
+            'mon': 'Cơ sở dữ liệu',
+            'phong': 'P.305',
+            'gio': '13:30-15:30',
+            'giangVien': 'Thầy Lê Văn C'
+          },
+          {
+            'maLop': '003',
+            'thu': 'Thứ 4',
+            'thuTu': 4,
+            'mon': 'Mạng máy tính',
+            'phong': 'P.410',
+            'gio': '08:00-10:00',
+            'giangVien': 'Thầy Hoàng Văn D'
+          },
+          {
+            'maLop': '003',
+            'thu': 'Thứ 5',
+            'thuTu': 5,
+            'mon': 'Cấu trúc dữ liệu',
+            'phong': 'Lab 01',
+            'gio': '10:00-12:00',
+            'giangVien': 'Cô Trần Thị B'
+          },
+          {
+            'maLop': '003',
+            'thu': 'Thứ 6',
+            'thuTu': 6,
+            'mon': 'Lập trình C++',
+            'phong': 'Lab 02',
+            'gio': '13:30-15:30',
+            'giangVien': 'Cô Ngô Thị E'
+          },
+        ];
+
+        for (var item in thoiKhoaBieuDefaults) {
+          await _firestore.collection(scheduleCollection).add(item);
+        }
+
+        print('✅ Đã tạo thời khóa biểu mặc định');
       }
     } catch (e) {
       print('❌ Lỗi khởi tạo tài khoản: $e');
@@ -302,9 +453,9 @@ class DatabaseService {
           .where('maSV', isEqualTo: maSV)
           .get();
       
-      // Sắp xếp dữ liệu theo thứTự trong Dart
+      // Sắp xếp dữ liệu theo thuTu trong Dart
       final lichHocList = querySnap.docs.map((doc) => doc.data()).toList();
-      lichHocList.sort((a, b) => (a['thứTự'] as int).compareTo(b['thứTự'] as int));
+      lichHocList.sort((a, b) => (a['thuTu'] as int).compareTo(b['thuTu'] as int));
       
       return lichHocList;
     } catch (e) {
@@ -364,18 +515,62 @@ class DatabaseService {
   }
 
   /// ==================== THỜI KHÓA BIỂU ====================
+  /// Lấy thời khóa biểu của lớp (với docId)
+  Future<List<Map<String, dynamic>>> getThoiKhoaBieuWithId(String maLop) async {
+    try {
+      final querySnap = await _firestore
+          .collection('thoi_khoa_bieu')
+          .where('maLop', isEqualTo: maLop)
+          .orderBy('thuTu')
+          .get();
+      return querySnap.docs
+          .map((doc) => {...doc.data(), 'id': doc.id})
+          .toList();
+    } catch (e) {
+      print('❌ Lỗi lấy thời khóa biểu: $e');
+      return [];
+    }
+  }
+
   /// Lấy thời khóa biểu của lớp
   Future<List<Map<String, dynamic>>> getThoiKhoaBieu(String maLop) async {
     try {
       final querySnap = await _firestore
           .collection('thoi_khoa_bieu')
           .where('maLop', isEqualTo: maLop)
-          .orderBy('thu')
+          .orderBy('thuTu')
           .get();
       return querySnap.docs.map((doc) => doc.data()).toList();
     } catch (e) {
       print('❌ Lỗi lấy thời khóa biểu: $e');
       return [];
+    }
+  }
+
+  /// Xóa lớp học từ thời khóa biểu
+  Future<bool> deleteThoiKhoaBieu(String docId) async {
+    try {
+      await _firestore.collection('thoi_khoa_bieu').doc(docId).delete();
+      print('✅ Đã xóa thời khóa biểu');
+      return true;
+    } catch (e) {
+      print('❌ Lỗi xóa thời khóa biểu: $e');
+      return false;
+    }
+  }
+
+  /// Cập nhật lớp học trong thời khóa biểu
+  Future<bool> updateThoiKhoaBieu(
+    String docId,
+    Map<String, dynamic> data,
+  ) async {
+    try {
+      await _firestore.collection('thoi_khoa_bieu').doc(docId).update(data);
+      print('✅ Đã cập nhật thời khóa biểu');
+      return true;
+    } catch (e) {
+      print('❌ Lỗi cập nhật thời khóa biểu: $e');
+      return false;
     }
   }
 
@@ -519,39 +714,39 @@ class DatabaseService {
       // ===== DỮ LIỆU LỊCH HỌC =====
       final lichHoc = [
         // Lịch học für sinh viên 20224047
-        {'maSV': '20224047', 'thu': 'Thứ 2', 'thứTự': 2, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '07:30 - 09:30', 'giangVien': 'Thầy Nguyễn Văn A'},
-        {'maSV': '20224047', 'thu': 'Thứ 3', 'thứTự': 3, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '07:30 - 09:30', 'giangVien': 'Thầy Nguyễn Văn A'},
-        {'maSV': '20224047', 'thu': 'Thứ 4', 'thứTự': 4, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '13:30 - 15:30', 'giangVien': 'Cô Trần Thị B'},
-        {'maSV': '20224047', 'thu': 'Thứ 5', 'thứTự': 5, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '10:00 - 12:00', 'giangVien': 'Thầy Lê Văn C'},
-        {'maSV': '20224047', 'thu': 'Thứ 6', 'thứTự': 6, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '14:00 - 16:00', 'giangVien': 'Thầy Hoàng Văn D'},
+        {'maSV': '20224047', 'thu': 'Thứ 2', 'thuTu': 2, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '07:30 - 09:30', 'giangVien': 'Thầy Nguyễn Văn A'},
+        {'maSV': '20224047', 'thu': 'Thứ 3', 'thuTu': 3, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '07:30 - 09:30', 'giangVien': 'Thầy Nguyễn Văn A'},
+        {'maSV': '20224047', 'thu': 'Thứ 4', 'thuTu': 4, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '13:30 - 15:30', 'giangVien': 'Cô Trần Thị B'},
+        {'maSV': '20224047', 'thu': 'Thứ 5', 'thuTu': 5, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '10:00 - 12:00', 'giangVien': 'Thầy Lê Văn C'},
+        {'maSV': '20224047', 'thu': 'Thứ 6', 'thuTu': 6, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '14:00 - 16:00', 'giangVien': 'Thầy Hoàng Văn D'},
         
         // Lịch học cho sinh viên 20223882
-        {'maSV': '20223882', 'thu': 'Thứ 2', 'thứTự': 2, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '08:00 - 10:00', 'giangVien': 'Thầy Lê Văn C'},
-        {'maSV': '20223882', 'thu': 'Thứ 3', 'thứTự': 3, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '10:00 - 12:00', 'giangVien': 'Thầy Hoàng Văn D'},
-        {'maSV': '20223882', 'thu': 'Thứ 4', 'thứTự': 4, 'mon': 'Lập trình C++', 'phong': 'Lab 02', 'gio': '07:30 - 09:30', 'giangVien': 'Cô Ngô Thị E'},
-        {'maSV': '20223882', 'thu': 'Thứ 5', 'thứTự': 5, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '13:30 - 15:30', 'giangVien': 'Thầy Nguyễn Văn A'},
-        {'maSV': '20223882', 'thu': 'Thứ 7', 'thứTự': 7, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '08:00 - 10:00', 'giangVien': 'Cô Trần Thị B'},
+        {'maSV': '20223882', 'thu': 'Thứ 2', 'thuTu': 2, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '08:00 - 10:00', 'giangVien': 'Thầy Lê Văn C'},
+        {'maSV': '20223882', 'thu': 'Thứ 3', 'thuTu': 3, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '10:00 - 12:00', 'giangVien': 'Thầy Hoàng Văn D'},
+        {'maSV': '20223882', 'thu': 'Thứ 4', 'thuTu': 4, 'mon': 'Lập trình C++', 'phong': 'Lab 02', 'gio': '07:30 - 09:30', 'giangVien': 'Cô Ngô Thị E'},
+        {'maSV': '20223882', 'thu': 'Thứ 5', 'thuTu': 5, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '13:30 - 15:30', 'giangVien': 'Thầy Nguyễn Văn A'},
+        {'maSV': '20223882', 'thu': 'Thứ 7', 'thuTu': 7, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '08:00 - 10:00', 'giangVien': 'Cô Trần Thị B'},
         
         // Lịch học cho sinh viên 20224997
-        {'maSV': '20224997', 'thu': 'Thứ 2', 'thứTự': 2, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '10:00 - 12:00', 'giangVien': 'Thầy Nguyễn Văn A'},
-        {'maSV': '20224997', 'thu': 'Thứ 3', 'thứTự': 3, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '13:30 - 15:30', 'giangVien': 'Thầy Lê Văn C'},
-        {'maSV': '20224997', 'thu': 'Thứ 4', 'thứTự': 4, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '08:00 - 10:00', 'giangVien': 'Thầy Hoàng Văn D'},
-        {'maSV': '20224997', 'thu': 'Thứ 5', 'thứTự': 5, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '10:00 - 12:00', 'giangVien': 'Cô Trần Thị B'},
-        {'maSV': '20224997', 'thu': 'Thứ 6', 'thứTự': 6, 'mon': 'Lập trình C++', 'phong': 'Lab 02', 'gio': '13:30 - 15:30', 'giangVien': 'Cô Ngô Thị E'},
+        {'maSV': '20224997', 'thu': 'Thứ 2', 'thuTu': 2, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '10:00 - 12:00', 'giangVien': 'Thầy Nguyễn Văn A'},
+        {'maSV': '20224997', 'thu': 'Thứ 3', 'thuTu': 3, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '13:30 - 15:30', 'giangVien': 'Thầy Lê Văn C'},
+        {'maSV': '20224997', 'thu': 'Thứ 4', 'thuTu': 4, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '08:00 - 10:00', 'giangVien': 'Thầy Hoàng Văn D'},
+        {'maSV': '20224997', 'thu': 'Thứ 5', 'thuTu': 5, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '10:00 - 12:00', 'giangVien': 'Cô Trần Thị B'},
+        {'maSV': '20224997', 'thu': 'Thứ 6', 'thuTu': 6, 'mon': 'Lập trình C++', 'phong': 'Lab 02', 'gio': '13:30 - 15:30', 'giangVien': 'Cô Ngô Thị E'},
         
         // Lịch học cho sinh viên 12345
-        {'maSV': '12345', 'thu': 'Thứ 2', 'thứTự': 2, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '07:30 - 09:30', 'giangVien': 'Thầy Hoàng Văn D'},
-        {'maSV': '12345', 'thu': 'Thứ 3', 'thứTự': 3, 'mon': 'Lập trình C++', 'phong': 'Lab 02', 'gio': '10:00 - 12:00', 'giangVien': 'Cô Ngô Thị E'},
-        {'maSV': '12345', 'thu': 'Thứ 4', 'thứTự': 4, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '13:30 - 15:30', 'giangVien': 'Thầy Lê Văn C'},
-        {'maSV': '12345', 'thu': 'Thứ 5', 'thứTự': 5, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '07:30 - 09:30', 'giangVien': 'Thầy Nguyễn Văn A'},
-        {'maSV': '12345', 'thu': 'Thứ 6', 'thứTự': 6, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '10:00 - 12:00', 'giangVien': 'Cô Trần Thị B'},
+        {'maSV': '12345', 'thu': 'Thứ 2', 'thuTu': 2, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '07:30 - 09:30', 'giangVien': 'Thầy Hoàng Văn D'},
+        {'maSV': '12345', 'thu': 'Thứ 3', 'thuTu': 3, 'mon': 'Lập trình C++', 'phong': 'Lab 02', 'gio': '10:00 - 12:00', 'giangVien': 'Cô Ngô Thị E'},
+        {'maSV': '12345', 'thu': 'Thứ 4', 'thuTu': 4, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '13:30 - 15:30', 'giangVien': 'Thầy Lê Văn C'},
+        {'maSV': '12345', 'thu': 'Thứ 5', 'thuTu': 5, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '07:30 - 09:30', 'giangVien': 'Thầy Nguyễn Văn A'},
+        {'maSV': '12345', 'thu': 'Thứ 6', 'thuTu': 6, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '10:00 - 12:00', 'giangVien': 'Cô Trần Thị B'},
         
         // Lịch học cho sinh viên 42222
-        {'maSV': '42222', 'thu': 'Thứ 2', 'thứTự': 2, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '08:00 - 10:00', 'giangVien': 'Cô Trần Thị B'},
-        {'maSV': '42222', 'thu': 'Thứ 3', 'thứTự': 3, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '10:00 - 12:00', 'giangVien': 'Thầy Hoàng Văn D'},
-        {'maSV': '42222', 'thu': 'Thứ 4', 'thứTự': 4, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '13:30 - 15:30', 'giangVien': 'Thầy Nguyễn Văn A'},
-        {'maSV': '42222', 'thu': 'Thứ 5', 'thứTự': 5, 'mon': 'Lập trình C++', 'phong': 'Lab 02', 'gio': '07:30 - 09:30', 'giangVien': 'Cô Ngô Thị E'},
-        {'maSV': '42222', 'thu': 'Thứ 7', 'thứTự': 7, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '10:00 - 12:00', 'giangVien': 'Thầy Lê Văn C'},
+        {'maSV': '42222', 'thu': 'Thứ 2', 'thuTu': 2, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '08:00 - 10:00', 'giangVien': 'Cô Trần Thị B'},
+        {'maSV': '42222', 'thu': 'Thứ 3', 'thuTu': 3, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '10:00 - 12:00', 'giangVien': 'Thầy Hoàng Văn D'},
+        {'maSV': '42222', 'thu': 'Thứ 4', 'thuTu': 4, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '13:30 - 15:30', 'giangVien': 'Thầy Nguyễn Văn A'},
+        {'maSV': '42222', 'thu': 'Thứ 5', 'thuTu': 5, 'mon': 'Lập trình C++', 'phong': 'Lab 02', 'gio': '07:30 - 09:30', 'giangVien': 'Cô Ngô Thị E'},
+        {'maSV': '42222', 'thu': 'Thứ 7', 'thuTu': 7, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '10:00 - 12:00', 'giangVien': 'Thầy Lê Văn C'},
       ];
 
       for (var item in lichHoc) {
@@ -561,25 +756,25 @@ class DatabaseService {
       // ===== DỮ LIỆU THỜI KHÓA BIỂU (Khác nhau cho mỗi lớp) =====
       final thoiKhoaBieu = [
         // Lớp 001 (Nguyễn Gia Khánh, Nguyễn Văn A)
-        {'maLop': '001', 'thu': 'Thứ 2', 'thứTự': 2, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '07:30-09:30', 'giangVien': 'Thầy Nguyễn Văn A'},
-        {'maLop': '001', 'thu': 'Thứ 3', 'thứTự': 3, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '07:30-09:30', 'giangVien': 'Thầy Nguyễn Văn A'},
-        {'maLop': '001', 'thu': 'Thứ 4', 'thứTự': 4, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '13:30-15:30', 'giangVien': 'Cô Trần Thị B'},
-        {'maLop': '001', 'thu': 'Thứ 5', 'thứTự': 5, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '10:00-12:00', 'giangVien': 'Thầy Lê Văn C'},
-        {'maLop': '001', 'thu': 'Thứ 7', 'thứTự': 7, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '08:00-10:00', 'giangVien': 'Thầy Hoàng Văn D'},
+        {'maLop': '001', 'thu': 'Thứ 2', 'thuTu': 2, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '07:30-09:30', 'giangVien': 'Thầy Nguyễn Văn A'},
+        {'maLop': '001', 'thu': 'Thứ 3', 'thuTu': 3, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '07:30-09:30', 'giangVien': 'Thầy Nguyễn Văn A'},
+        {'maLop': '001', 'thu': 'Thứ 4', 'thuTu': 4, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '13:30-15:30', 'giangVien': 'Cô Trần Thị B'},
+        {'maLop': '001', 'thu': 'Thứ 5', 'thuTu': 5, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '10:00-12:00', 'giangVien': 'Thầy Lê Văn C'},
+        {'maLop': '001', 'thu': 'Thứ 7', 'thuTu': 7, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '08:00-10:00', 'giangVien': 'Thầy Hoàng Văn D'},
         
         // Lớp 002 (Vũ Huy Khánh, Nguyễn Văn B)
-        {'maLop': '002', 'thu': 'Thứ 2', 'thứTự': 2, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '08:00-10:00', 'giangVien': 'Thầy Lê Văn C'},
-        {'maLop': '002', 'thu': 'Thứ 3', 'thứTự': 3, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '10:00-12:00', 'giangVien': 'Thầy Hoàng Văn D'},
-        {'maLop': '002', 'thu': 'Thứ 4', 'thứTự': 4, 'mon': 'Lập trình C++', 'phong': 'Lab 02', 'gio': '07:30-09:30', 'giangVien': 'Cô Ngô Thị E'},
-        {'maLop': '002', 'thu': 'Thứ 5', 'thứTự': 5, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '13:30-15:30', 'giangVien': 'Thầy Nguyễn Văn A'},
-        {'maLop': '002', 'thu': 'Thứ 6', 'thứTự': 6, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '08:00-10:00', 'giangVien': 'Cô Trần Thị B'},
+        {'maLop': '002', 'thu': 'Thứ 2', 'thuTu': 2, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '08:00-10:00', 'giangVien': 'Thầy Lê Văn C'},
+        {'maLop': '002', 'thu': 'Thứ 3', 'thuTu': 3, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '10:00-12:00', 'giangVien': 'Thầy Hoàng Văn D'},
+        {'maLop': '002', 'thu': 'Thứ 4', 'thuTu': 4, 'mon': 'Lập trình C++', 'phong': 'Lab 02', 'gio': '07:30-09:30', 'giangVien': 'Cô Ngô Thị E'},
+        {'maLop': '002', 'thu': 'Thứ 5', 'thuTu': 5, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '13:30-15:30', 'giangVien': 'Thầy Nguyễn Văn A'},
+        {'maLop': '002', 'thu': 'Thứ 6', 'thuTu': 6, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '08:00-10:00', 'giangVien': 'Cô Trần Thị B'},
         
         // Lớp 003 (Ngô Mạnh Kiên)
-        {'maLop': '003', 'thu': 'Thứ 2', 'thứTự': 2, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '10:00-12:00', 'giangVien': 'Thầy Nguyễn Văn A'},
-        {'maLop': '003', 'thu': 'Thứ 3', 'thứTự': 3, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '13:30-15:30', 'giangVien': 'Thầy Lê Văn C'},
-        {'maLop': '003', 'thu': 'Thứ 4', 'thứTự': 4, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '08:00-10:00', 'giangVien': 'Thầy Hoàng Văn D'},
-        {'maLop': '003', 'thu': 'Thứ 5', 'thứTự': 5, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '10:00-12:00', 'giangVien': 'Cô Trần Thị B'},
-        {'maLop': '003', 'thu': 'Thứ 6', 'thứTự': 6, 'mon': 'Lập trình C++', 'phong': 'Lab 02', 'gio': '13:30-15:30', 'giangVien': 'Cô Ngô Thị E'},
+        {'maLop': '003', 'thu': 'Thứ 2', 'thuTu': 2, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '10:00-12:00', 'giangVien': 'Thầy Nguyễn Văn A'},
+        {'maLop': '003', 'thu': 'Thứ 3', 'thuTu': 3, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '13:30-15:30', 'giangVien': 'Thầy Lê Văn C'},
+        {'maLop': '003', 'thu': 'Thứ 4', 'thuTu': 4, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '08:00-10:00', 'giangVien': 'Thầy Hoàng Văn D'},
+        {'maLop': '003', 'thu': 'Thứ 5', 'thuTu': 5, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '10:00-12:00', 'giangVien': 'Cô Trần Thị B'},
+        {'maLop': '003', 'thu': 'Thứ 6', 'thuTu': 6, 'mon': 'Lập trình C++', 'phong': 'Lab 02', 'gio': '13:30-15:30', 'giangVien': 'Cô Ngô Thị E'},
       ];
 
       for (var item in thoiKhoaBieu) {
@@ -660,39 +855,39 @@ class DatabaseService {
       // ===== TẠO LẠI DỮ LIỆU LỊCH HỌC =====
       final lichHoc = [
         // Lịch học cho sinh viên 20224047 (Lớp 001)
-        {'maSV': '20224047', 'thu': 'Thứ 2', 'thứTự': 2, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '07:30 - 09:30', 'giangVien': 'Thầy Nguyễn Văn A'},
-        {'maSV': '20224047', 'thu': 'Thứ 3', 'thứTự': 3, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '07:30 - 09:30', 'giangVien': 'Thầy Nguyễn Văn A'},
-        {'maSV': '20224047', 'thu': 'Thứ 4', 'thứTự': 4, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '13:30 - 15:30', 'giangVien': 'Cô Trần Thị B'},
-        {'maSV': '20224047', 'thu': 'Thứ 5', 'thứTự': 5, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '10:00 - 12:00', 'giangVien': 'Thầy Lê Văn C'},
-        {'maSV': '20224047', 'thu': 'Thứ 7', 'thứTự': 7, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '08:00 - 10:00', 'giangVien': 'Thầy Hoàng Văn D'},
+        {'maSV': '20224047', 'thu': 'Thứ 2', 'thuTu': 2, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '07:30 - 09:30', 'giangVien': 'Thầy Nguyễn Văn A'},
+        {'maSV': '20224047', 'thu': 'Thứ 3', 'thuTu': 3, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '07:30 - 09:30', 'giangVien': 'Thầy Nguyễn Văn A'},
+        {'maSV': '20224047', 'thu': 'Thứ 4', 'thuTu': 4, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '13:30 - 15:30', 'giangVien': 'Cô Trần Thị B'},
+        {'maSV': '20224047', 'thu': 'Thứ 5', 'thuTu': 5, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '10:00 - 12:00', 'giangVien': 'Thầy Lê Văn C'},
+        {'maSV': '20224047', 'thu': 'Thứ 7', 'thuTu': 7, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '08:00 - 10:00', 'giangVien': 'Thầy Hoàng Văn D'},
         
         // Lịch học cho sinh viên 20223882 (Lớp 002)
-        {'maSV': '20223882', 'thu': 'Thứ 2', 'thứTự': 2, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '08:00 - 10:00', 'giangVien': 'Thầy Lê Văn C'},
-        {'maSV': '20223882', 'thu': 'Thứ 3', 'thứTự': 3, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '10:00 - 12:00', 'giangVien': 'Thầy Hoàng Văn D'},
-        {'maSV': '20223882', 'thu': 'Thứ 4', 'thứTự': 4, 'mon': 'Lập trình C++', 'phong': 'Lab 02', 'gio': '07:30 - 09:30', 'giangVien': 'Cô Ngô Thị E'},
-        {'maSV': '20223882', 'thu': 'Thứ 5', 'thứTự': 5, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '13:30 - 15:30', 'giangVien': 'Thầy Nguyễn Văn A'},
-        {'maSV': '20223882', 'thu': 'Thứ 6', 'thứTự': 6, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '08:00 - 10:00', 'giangVien': 'Cô Trần Thị B'},
+        {'maSV': '20223882', 'thu': 'Thứ 2', 'thuTu': 2, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '08:00 - 10:00', 'giangVien': 'Thầy Lê Văn C'},
+        {'maSV': '20223882', 'thu': 'Thứ 3', 'thuTu': 3, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '10:00 - 12:00', 'giangVien': 'Thầy Hoàng Văn D'},
+        {'maSV': '20223882', 'thu': 'Thứ 4', 'thuTu': 4, 'mon': 'Lập trình C++', 'phong': 'Lab 02', 'gio': '07:30 - 09:30', 'giangVien': 'Cô Ngô Thị E'},
+        {'maSV': '20223882', 'thu': 'Thứ 5', 'thuTu': 5, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '13:30 - 15:30', 'giangVien': 'Thầy Nguyễn Văn A'},
+        {'maSV': '20223882', 'thu': 'Thứ 6', 'thuTu': 6, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '08:00 - 10:00', 'giangVien': 'Cô Trần Thị B'},
         
         // Lịch học cho sinh viên 20224997 (Lớp 003)
-        {'maSV': '20224997', 'thu': 'Thứ 2', 'thứTự': 2, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '10:00 - 12:00', 'giangVien': 'Thầy Nguyễn Văn A'},
-        {'maSV': '20224997', 'thu': 'Thứ 3', 'thứTự': 3, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '13:30 - 15:30', 'giangVien': 'Thầy Lê Văn C'},
-        {'maSV': '20224997', 'thu': 'Thứ 4', 'thứTự': 4, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '08:00 - 10:00', 'giangVien': 'Thầy Hoàng Văn D'},
-        {'maSV': '20224997', 'thu': 'Thứ 5', 'thứTự': 5, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '10:00 - 12:00', 'giangVien': 'Cô Trần Thị B'},
-        {'maSV': '20224997', 'thu': 'Thứ 6', 'thứTự': 6, 'mon': 'Lập trình C++', 'phong': 'Lab 02', 'gio': '13:30 - 15:30', 'giangVien': 'Cô Ngô Thị E'},
+        {'maSV': '20224997', 'thu': 'Thứ 2', 'thuTu': 2, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '10:00 - 12:00', 'giangVien': 'Thầy Nguyễn Văn A'},
+        {'maSV': '20224997', 'thu': 'Thứ 3', 'thuTu': 3, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '13:30 - 15:30', 'giangVien': 'Thầy Lê Văn C'},
+        {'maSV': '20224997', 'thu': 'Thứ 4', 'thuTu': 4, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '08:00 - 10:00', 'giangVien': 'Thầy Hoàng Văn D'},
+        {'maSV': '20224997', 'thu': 'Thứ 5', 'thuTu': 5, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '10:00 - 12:00', 'giangVien': 'Cô Trần Thị B'},
+        {'maSV': '20224997', 'thu': 'Thứ 6', 'thuTu': 6, 'mon': 'Lập trình C++', 'phong': 'Lab 02', 'gio': '13:30 - 15:30', 'giangVien': 'Cô Ngô Thị E'},
         
         // Lịch học cho sinh viên 12345 (Lớp 001)
-        {'maSV': '12345', 'thu': 'Thứ 2', 'thứTự': 2, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '07:30 - 09:30', 'giangVien': 'Thầy Nguyễn Văn A'},
-        {'maSV': '12345', 'thu': 'Thứ 3', 'thứTự': 3, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '07:30 - 09:30', 'giangVien': 'Thầy Nguyễn Văn A'},
-        {'maSV': '12345', 'thu': 'Thứ 4', 'thứTự': 4, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '13:30 - 15:30', 'giangVien': 'Cô Trần Thị B'},
-        {'maSV': '12345', 'thu': 'Thứ 5', 'thứTự': 5, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '10:00 - 12:00', 'giangVien': 'Thầy Lê Văn C'},
-        {'maSV': '12345', 'thu': 'Thứ 7', 'thứTự': 7, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '08:00 - 10:00', 'giangVien': 'Thầy Hoàng Văn D'},
+        {'maSV': '12345', 'thu': 'Thứ 2', 'thuTu': 2, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '07:30 - 09:30', 'giangVien': 'Thầy Nguyễn Văn A'},
+        {'maSV': '12345', 'thu': 'Thứ 3', 'thuTu': 3, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '07:30 - 09:30', 'giangVien': 'Thầy Nguyễn Văn A'},
+        {'maSV': '12345', 'thu': 'Thứ 4', 'thuTu': 4, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '13:30 - 15:30', 'giangVien': 'Cô Trần Thị B'},
+        {'maSV': '12345', 'thu': 'Thứ 5', 'thuTu': 5, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '10:00 - 12:00', 'giangVien': 'Thầy Lê Văn C'},
+        {'maSV': '12345', 'thu': 'Thứ 7', 'thuTu': 7, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '08:00 - 10:00', 'giangVien': 'Thầy Hoàng Văn D'},
         
         // Lịch học cho sinh viên 42222 (Lớp 002)
-        {'maSV': '42222', 'thu': 'Thứ 2', 'thứTự': 2, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '08:00 - 10:00', 'giangVien': 'Thầy Lê Văn C'},
-        {'maSV': '42222', 'thu': 'Thứ 3', 'thứTự': 3, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '10:00 - 12:00', 'giangVien': 'Thầy Hoàng Văn D'},
-        {'maSV': '42222', 'thu': 'Thứ 4', 'thứTự': 4, 'mon': 'Lập trình C++', 'phong': 'Lab 02', 'gio': '07:30 - 09:30', 'giangVien': 'Cô Ngô Thị E'},
-        {'maSV': '42222', 'thu': 'Thứ 5', 'thứTự': 5, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '13:30 - 15:30', 'giangVien': 'Thầy Nguyễn Văn A'},
-        {'maSV': '42222', 'thu': 'Thứ 6', 'thứTự': 6, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '08:00 - 10:00', 'giangVien': 'Cô Trần Thị B'},
+        {'maSV': '42222', 'thu': 'Thứ 2', 'thuTu': 2, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '08:00 - 10:00', 'giangVien': 'Thầy Lê Văn C'},
+        {'maSV': '42222', 'thu': 'Thứ 3', 'thuTu': 3, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '10:00 - 12:00', 'giangVien': 'Thầy Hoàng Văn D'},
+        {'maSV': '42222', 'thu': 'Thứ 4', 'thuTu': 4, 'mon': 'Lập trình C++', 'phong': 'Lab 02', 'gio': '07:30 - 09:30', 'giangVien': 'Cô Ngô Thị E'},
+        {'maSV': '42222', 'thu': 'Thứ 5', 'thuTu': 5, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '13:30 - 15:30', 'giangVien': 'Thầy Nguyễn Văn A'},
+        {'maSV': '42222', 'thu': 'Thứ 6', 'thuTu': 6, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '08:00 - 10:00', 'giangVien': 'Cô Trần Thị B'},
       ];
 
       for (var item in lichHoc) {
@@ -700,28 +895,35 @@ class DatabaseService {
       }
       print('✅ Đã tạo dữ liệu lịch học mới');
 
-      // ===== TẠO LẠI DỮ LIỆU THỜI KHÓA BIỂU =====
+      // ===== TẠO LẠI DỮ LIỆU THỜI KHÓA BIỂU (20 MẪU) =====
       final thoiKhoaBieu = [
-        // Lớp 001 (Nguyễn Gia Khánh, Nguyễn Văn A)
-        {'maLop': '001', 'thu': 'Thứ 2', 'thứTự': 2, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '07:30-09:30', 'giangVien': 'Thầy Nguyễn Văn A'},
-        {'maLop': '001', 'thu': 'Thứ 3', 'thứTự': 3, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '07:30-09:30', 'giangVien': 'Thầy Nguyễn Văn A'},
-        {'maLop': '001', 'thu': 'Thứ 4', 'thứTự': 4, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '13:30-15:30', 'giangVien': 'Cô Trần Thị B'},
-        {'maLop': '001', 'thu': 'Thứ 5', 'thứTự': 5, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '10:00-12:00', 'giangVien': 'Thầy Lê Văn C'},
-        {'maLop': '001', 'thu': 'Thứ 7', 'thứTự': 7, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '08:00-10:00', 'giangVien': 'Thầy Hoàng Văn D'},
+        // Lớp 001 - Thứ 2 (5 môn)
+        {'maLop': '001', 'thu': 'Thứ 2', 'thuTu': 2, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '07:30-09:30', 'giangVien': 'Thầy Nguyễn Văn A'},
+        {'maLop': '001', 'thu': 'Thứ 2', 'thuTu': 2, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '09:45-11:45', 'giangVien': 'Cô Trần Thị B'},
+        {'maLop': '001', 'thu': 'Thứ 2', 'thuTu': 2, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '13:00-15:00', 'giangVien': 'Thầy Lê Văn C'},
+        {'maLop': '001', 'thu': 'Thứ 2', 'thuTu': 2, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '15:15-17:15', 'giangVien': 'Thầy Hoàng Văn D'},
+        {'maLop': '001', 'thu': 'Thứ 2', 'thuTu': 2, 'mon': 'Lập trình C++', 'phong': 'Lab 02', 'gio': '17:30-19:30', 'giangVien': 'Cô Ngô Thị E'},
         
-        // Lớp 002 (Vũ Huy Khánh, Nguyễn Văn B)
-        {'maLop': '002', 'thu': 'Thứ 2', 'thứTự': 2, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '08:00-10:00', 'giangVien': 'Thầy Lê Văn C'},
-        {'maLop': '002', 'thu': 'Thứ 3', 'thứTự': 3, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '10:00-12:00', 'giangVien': 'Thầy Hoàng Văn D'},
-        {'maLop': '002', 'thu': 'Thứ 4', 'thứTự': 4, 'mon': 'Lập trình C++', 'phong': 'Lab 02', 'gio': '07:30-09:30', 'giangVien': 'Cô Ngô Thị E'},
-        {'maLop': '002', 'thu': 'Thứ 5', 'thứTự': 5, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '13:30-15:30', 'giangVien': 'Thầy Nguyễn Văn A'},
-        {'maLop': '002', 'thu': 'Thứ 6', 'thứTự': 6, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '08:00-10:00', 'giangVien': 'Cô Trần Thị B'},
+        // Lớp 002 - Thứ 3 (5 môn)
+        {'maLop': '002', 'thu': 'Thứ 3', 'thuTu': 3, 'mon': 'Hệ điều hành', 'phong': 'P.405', 'gio': '07:30-09:30', 'giangVien': 'Thầy Phạm Văn F'},
+        {'maLop': '002', 'thu': 'Thứ 3', 'thuTu': 3, 'mon': 'Phát triển web', 'phong': 'P.407', 'gio': '09:45-11:45', 'giangVien': 'Cô Dương Thị G'},
+        {'maLop': '002', 'thu': 'Thứ 3', 'thuTu': 3, 'mon': 'An ninh thông tin', 'phong': 'P.301', 'gio': '13:00-15:00', 'giangVien': 'Thầy Tô Văn H'},
+        {'maLop': '002', 'thu': 'Thứ 3', 'thuTu': 3, 'mon': 'Thiết kế cơ sở dữ liệu', 'phong': 'Lab 03', 'gio': '15:15-17:15', 'giangVien': 'Cô Vũ Thị I'},
+        {'maLop': '002', 'thu': 'Thứ 3', 'thuTu': 3, 'mon': 'Tương tác người dùng', 'phong': 'P.408', 'gio': '17:30-19:30', 'giangVien': 'Thầy Bùi Văn K'},
         
-        // Lớp 003 (Ngô Mạnh Kiên)
-        {'maLop': '003', 'thu': 'Thứ 2', 'thứTự': 2, 'mon': 'Lập trình Flutter', 'phong': 'P.402', 'gio': '10:00-12:00', 'giangVien': 'Thầy Nguyễn Văn A'},
-        {'maLop': '003', 'thu': 'Thứ 3', 'thứTự': 3, 'mon': 'Cơ sở dữ liệu', 'phong': 'P.305', 'gio': '13:30-15:30', 'giangVien': 'Thầy Lê Văn C'},
-        {'maLop': '003', 'thu': 'Thứ 4', 'thứTự': 4, 'mon': 'Mạng máy tính', 'phong': 'P.410', 'gio': '08:00-10:00', 'giangVien': 'Thầy Hoàng Văn D'},
-        {'maLop': '003', 'thu': 'Thứ 5', 'thứTự': 5, 'mon': 'Cấu trúc dữ liệu', 'phong': 'Lab 01', 'gio': '10:00-12:00', 'giangVien': 'Cô Trần Thị B'},
-        {'maLop': '003', 'thu': 'Thứ 6', 'thứTự': 6, 'mon': 'Lập trình C++', 'phong': 'Lab 02', 'gio': '13:30-15:30', 'giangVien': 'Cô Ngô Thị E'},
+        // Lớp 003 - Thứ 4 (5 môn)
+        {'maLop': '003', 'thu': 'Thứ 4', 'thuTu': 4, 'mon': 'Trí tuệ nhân tạo', 'phong': 'P.501', 'gio': '07:30-09:30', 'giangVien': 'Thầy Đặng Văn L'},
+        {'maLop': '003', 'thu': 'Thứ 4', 'thuTu': 4, 'mon': 'Khoa học dữ liệu', 'phong': 'Lab 04', 'gio': '09:45-11:45', 'giangVien': 'Cô Lâm Thị M'},
+        {'maLop': '003', 'thu': 'Thứ 4', 'thuTu': 4, 'mon': 'Máy học', 'phong': 'P.502', 'gio': '13:00-15:00', 'giangVien': 'Thầy Trương Văn N'},
+        {'maLop': '003', 'thu': 'Thứ 4', 'thuTu': 4, 'mon': 'Xử lý ảnh kỹ thuật số', 'phong': 'Lab 05', 'gio': '15:15-17:15', 'giangVien': 'Cô Trịnh Thị O'},
+        {'maLop': '003', 'thu': 'Thứ 4', 'thuTu': 4, 'mon': 'Đồ họa máy tính', 'phong': 'P.503', 'gio': '17:30-19:30', 'giangVien': 'Thầy Đoàn Văn P'},
+        
+        // Lớp 001 - Thứ 5 (5 môn)
+        {'maLop': '001', 'thu': 'Thứ 5', 'thuTu': 5, 'mon': 'Kiến trúc máy tính', 'phong': 'P.404', 'gio': '07:30-09:30', 'giangVien': 'Thầy Giang Văn Q'},
+        {'maLop': '001', 'thu': 'Thứ 5', 'thuTu': 5, 'mon': 'Lập trình song song', 'phong': 'Lab 06', 'gio': '09:45-11:45', 'giangVien': 'Cô Hà Thị R'},
+        {'maLop': '001', 'thu': 'Thứ 5', 'thuTu': 5, 'mon': 'Điện toán đám mây', 'phong': 'P.504', 'gio': '13:00-15:00', 'giangVien': 'Thầy Hoàng Văn S'},
+        {'maLop': '001', 'thu': 'Thứ 5', 'thuTu': 5, 'mon': 'Lập trình mobile', 'phong': 'P.406', 'gio': '15:15-17:15', 'giangVien': 'Cô Thảo Thị T'},
+        {'maLop': '001', 'thu': 'Thứ 5', 'thuTu': 5, 'mon': 'Quản lý dự án phần mềm', 'phong': 'P.505', 'gio': '17:30-19:30', 'giangVien': 'Thầy Vinh Văn U'},
       ];
 
       for (var item in thoiKhoaBieu) {
@@ -729,6 +931,43 @@ class DatabaseService {
       }
 
       print('✅ Đã tạo dữ liệu thời khóa biểu mới');
+
+      // ===== TẠO LẠI DỮ LIỆU LỊCH DẠY (20 MẪU - CHO ADMIN) =====
+      final lichDay = [
+        // Thứ 2 (4 lịch dạy)
+        {'thu': 'Thứ 2', 'thuTu': 2, 'mon': 'Lập trình Flutter', 'maLop': '001', 'phong': 'P.402', 'gio': '07:30-09:30', 'giangVien': 'Thầy Nguyễn Văn A', 'siSo': 45},
+        {'thu': 'Thứ 2', 'thuTu': 2, 'mon': 'Cấu trúc dữ liệu', 'maLop': '001', 'phong': 'Lab 01', 'gio': '09:45-11:45', 'giangVien': 'Cô Trần Thị B', 'siSo': 30},
+        {'thu': 'Thứ 2', 'thuTu': 2, 'mon': 'Hệ điều hành', 'maLop': '002', 'phong': 'P.405', 'gio': '13:00-15:00', 'giangVien': 'Thầy Phạm Văn F', 'siSo': 50},
+        {'thu': 'Thứ 2', 'thuTu': 2, 'mon': 'An ninh thông tin', 'maLop': '003', 'phong': 'P.301', 'gio': '15:15-17:15', 'giangVien': 'Thầy Tô Văn H', 'siSo': 40},
+        
+        // Thứ 3 (4 lịch dạy)
+        {'thu': 'Thứ 3', 'thuTu': 3, 'mon': 'Cơ sở dữ liệu', 'maLop': '001', 'phong': 'P.305', 'gio': '07:30-09:30', 'giangVien': 'Thầy Lê Văn C', 'siSo': 45},
+        {'thu': 'Thứ 3', 'thuTu': 3, 'mon': 'Phát triển web', 'maLop': '002', 'phong': 'P.407', 'gio': '09:45-11:45', 'giangVien': 'Cô Dương Thị G', 'siSo': 42},
+        {'thu': 'Thứ 3', 'thuTu': 3, 'mon': 'Khoa học dữ liệu', 'maLop': '003', 'phong': 'Lab 04', 'gio': '13:00-15:00', 'giangVien': 'Cô Lâm Thị M', 'siSo': 35},
+        {'thu': 'Thứ 3', 'thuTu': 3, 'mon': 'Tương tác người dùng', 'maLop': '002', 'phong': 'P.408', 'gio': '17:30-19:30', 'giangVien': 'Thầy Bùi Văn K', 'siSo': 48},
+        
+        // Thứ 4 (4 lịch dạy)
+        {'thu': 'Thứ 4', 'thuTu': 4, 'mon': 'Mạng máy tính', 'maLop': '001', 'phong': 'P.410', 'gio': '07:30-09:30', 'giangVien': 'Thầy Hoàng Văn D', 'siSo': 46},
+        {'thu': 'Thứ 4', 'thuTu': 4, 'mon': 'Lập trình C++', 'maLop': '002', 'phong': 'Lab 02', 'gio': '09:45-11:45', 'giangVien': 'Cô Ngô Thị E', 'siSo': 32},
+        {'thu': 'Thứ 4', 'thuTu': 4, 'mon': 'Trí tuệ nhân tạo', 'maLop': '003', 'phong': 'P.501', 'gio': '13:00-15:00', 'giangVien': 'Thầy Đặng Văn L', 'siSo': 38},
+        {'thu': 'Thứ 4', 'thuTu': 4, 'mon': 'Xử lý ảnh kỹ thuật số', 'maLop': '003', 'phong': 'Lab 05', 'gio': '15:15-17:15', 'giangVien': 'Cô Trịnh Thị O', 'siSo': 28},
+        
+        // Thứ 5 (4 lịch dạy)
+        {'thu': 'Thứ 5', 'thuTu': 5, 'mon': 'Lập trình Flutter', 'maLop': '002', 'phong': 'P.402', 'gio': '07:30-09:30', 'giangVien': 'Thầy Nguyễn Văn A', 'siSo': 44},
+        {'thu': 'Thứ 5', 'thuTu': 5, 'mon': 'Thiết kế cơ sở dữ liệu', 'maLop': '002', 'phong': 'Lab 03', 'gio': '09:45-11:45', 'giangVien': 'Cô Vũ Thị I', 'siSo': 33},
+        {'thu': 'Thứ 5', 'thuTu': 5, 'mon': 'Kiến trúc máy tính', 'maLop': '001', 'phong': 'P.404', 'gio': '13:00-15:00', 'giangVien': 'Thầy Giang Văn Q', 'siSo': 47},
+        {'thu': 'Thứ 5', 'thuTu': 5, 'mon': 'Máy học', 'maLop': '003', 'phong': 'P.502', 'gio': '15:15-17:15', 'giangVien': 'Thầy Trương Văn N', 'siSo': 36},
+        
+        // Thứ 6 (2 lịch dạy)
+        {'thu': 'Thứ 6', 'thuTu': 6, 'mon': 'Lập trình song song', 'maLop': '001', 'phong': 'Lab 06', 'gio': '07:30-09:30', 'giangVien': 'Cô Hà Thị R', 'siSo': 29},
+        {'thu': 'Thứ 6', 'thuTu': 6, 'mon': 'Đồ họa máy tính', 'maLop': '003', 'phong': 'P.503', 'gio': '13:00-15:00', 'giangVien': 'Thầy Đoàn Văn P', 'siSo': 34},
+      ];
+
+      for (var item in lichDay) {
+        await _firestore.collection('lich_day').add(item);
+      }
+
+      print('✅ Đã tạo dữ liệu lịch dạy mới');
     } catch (e) {
       print('❌ Lỗi tạo lại dữ liệu: $e');
     }
@@ -749,7 +988,7 @@ class DatabaseService {
       await _firestore.collection('lich_hoc').add({
         'maSV': maSV,
         'thu': thu,
-        'thứTự': ordinal,
+        'thuTu': ordinal,
         'mon': mon,
         'phong': phong,
         'gio': gio,
@@ -801,7 +1040,7 @@ class DatabaseService {
       await _firestore.collection('thoi_khoa_bieu').add({
         'maLop': maLop,
         'thu': thu,
-        'thứTự': ordinal,
+        'thuTu': ordinal,
         'mon': mon,
         'phong': phong,
         'gio': gio,
@@ -838,6 +1077,114 @@ class DatabaseService {
       return true;
     } catch (e) {
       print('❌ Lỗi cập nhật lịch học: $e');
+      return false;
+    }
+  }
+
+  /// ==================== LỊCH DẠY (ADMIN) ====================
+  /// Lấy lịch dạy theo ngày (Thứ)
+  Future<List<Map<String, dynamic>>> getLichDayByDay(String thu) async {
+    try {
+      final querySnap = await _firestore
+          .collection('lich_day')
+          .where('thu', isEqualTo: thu)
+          .orderBy('gio')
+          .get();
+      return querySnap.docs
+          .map((doc) => {...doc.data(), 'id': doc.id})
+          .toList();
+    } catch (e) {
+      print('❌ Lỗi lấy lịch dạy theo ngày: $e');
+      return [];
+    }
+  }
+
+  /// Lấy tất cả lịch dạy
+  Future<List<Map<String, dynamic>>> getAllLichDay() async {
+    try {
+      final querySnap = await _firestore
+          .collection('lich_day')
+          .orderBy('thuTu')
+          .get();
+      return querySnap.docs
+          .map((doc) => {...doc.data(), 'id': doc.id})
+          .toList();
+    } catch (e) {
+      print('❌ Lỗi lấy tất cả lịch dạy: $e');
+      return [];
+    }
+  }
+
+  /// Lấy lịch dạy theo lớp
+  Future<List<Map<String, dynamic>>> getLichDayByLop(String maLop) async {
+    try {
+      final querySnap = await _firestore
+          .collection('lich_day')
+          .where('maLop', isEqualTo: maLop)
+          .orderBy('thuTu')
+          .get();
+      return querySnap.docs
+          .map((doc) => {...doc.data(), 'id': doc.id})
+          .toList();
+    } catch (e) {
+      print('❌ Lỗi lấy lịch dạy theo lớp: $e');
+      return [];
+    }
+  }
+
+  /// Thêm lịch dạy mới
+  Future<bool> addLichDay({
+    required String thu,
+    required int thuTu,
+    required String mon,
+    required String maLop,
+    required String phong,
+    required String gio,
+    required String giangVien,
+    required int siSo,
+  }) async {
+    try {
+      await _firestore.collection('lich_day').add({
+        'thu': thu,
+        'thuTu': thuTu,
+        'mon': mon,
+        'maLop': maLop,
+        'phong': phong,
+        'gio': gio,
+        'giangVien': giangVien,
+        'siSo': siSo,
+      });
+      print('✅ Đã thêm lịch dạy mới');
+      return true;
+    } catch (e) {
+      print('❌ Lỗi thêm lịch dạy: $e');
+      return false;
+    }
+  }
+
+  /// Xóa lịch dạy
+  Future<bool> deleteLichDay(String docId) async {
+    try {
+      await _firestore.collection('lich_day').doc(docId).delete();
+      print('✅ Đã xóa lịch dạy');
+      return true;
+    } catch (e) {
+      print('❌ Lỗi xóa lịch dạy: $e');
+      return false;
+    }
+  }
+
+  /// Cập nhật lịch dạy
+  Future<bool> updateLichDay(
+    String docId,
+    Map<String, dynamic> data,
+  ) async {
+    try {
+      await _firestore.collection('lich_day').doc(docId).update(data);
+      print('✅ Đã cập nhật lịch dạy');
+      return true;
+    } catch (e) {
+      print('❌ Lỗi cập nhật lịch dạy: $e');
       return false;
     }
   }
@@ -941,4 +1288,5 @@ class DatabaseService {
     }
   }
 }
+
 
