@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'utils/responsive_helper.dart';
 
 class ThongBaoScreen extends StatefulWidget {
   const ThongBaoScreen({super.key});
@@ -83,80 +84,151 @@ class _ThongBaoScreenState extends State<ThongBaoScreen> {
 
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(index == null ? 'Thêm thông báo' : 'Sửa thông báo'),
-        content: SingleChildScrollView(
+      builder: (context) => Dialog(
+        insetPadding: EdgeInsets.symmetric(
+          horizontal: ResponsiveHelper.paddingMedium(context),
+        ),
+        child: Container(
+          width: ResponsiveHelper.getDialogWidth(context),
+          padding: EdgeInsets.all(ResponsiveHelper.paddingLarge(context)),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              TextField(
-                controller: tieuDeController,
-                decoration: const InputDecoration(labelText: 'Tiêu đề'),
+              Text(
+                index == null ? 'Thêm thông báo' : 'Sửa thông báo',
+                style: TextStyle(
+                  fontSize: ResponsiveHelper.headingFontSize(context),
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: noiDungController,
-                decoration: const InputDecoration(labelText: 'Nội dung'),
-                maxLines: 3,
+              SizedBox(height: ResponsiveHelper.paddingLarge(context)),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextField(
+                        controller: tieuDeController,
+                        decoration: InputDecoration(
+                          labelText: 'Tiêu đề',
+                          labelStyle: TextStyle(fontSize: ResponsiveHelper.bodyFontSize(context)),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(ResponsiveHelper.borderRadiusSmall(context)),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: ResponsiveHelper.paddingMedium(context),
+                            vertical: ResponsiveHelper.paddingSmall(context),
+                          ),
+                        ),
+                        style: TextStyle(fontSize: ResponsiveHelper.bodyFontSize(context)),
+                      ),
+                      SizedBox(height: ResponsiveHelper.paddingMedium(context)),
+                      TextField(
+                        controller: noiDungController,
+                        decoration: InputDecoration(
+                          labelText: 'Nội dung',
+                          labelStyle: TextStyle(fontSize: ResponsiveHelper.bodyFontSize(context)),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(ResponsiveHelper.borderRadiusSmall(context)),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: ResponsiveHelper.paddingMedium(context),
+                            vertical: ResponsiveHelper.paddingSmall(context),
+                          ),
+                        ),
+                        maxLines: 3,
+                        style: TextStyle(fontSize: ResponsiveHelper.bodyFontSize(context)),
+                      ),
+                      SizedBox(height: ResponsiveHelper.paddingMedium(context)),
+                      TextField(
+                        controller: ngayController,
+                        decoration: InputDecoration(
+                          labelText: 'Ngày (dd/MM/yyyy)',
+                          labelStyle: TextStyle(fontSize: ResponsiveHelper.bodyFontSize(context)),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(ResponsiveHelper.borderRadiusSmall(context)),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: ResponsiveHelper.paddingMedium(context),
+                            vertical: ResponsiveHelper.paddingSmall(context),
+                          ),
+                        ),
+                        style: TextStyle(fontSize: ResponsiveHelper.bodyFontSize(context)),
+                      ),
+                      SizedBox(height: ResponsiveHelper.paddingMedium(context)),
+                      DropdownButton<String>(
+                        value: selectedLoai,
+                        isExpanded: true,
+                        items: ['Nghỉ lễ', 'Học bổng', 'Sự kiện', 'Thông báo chung']
+                            .map((e) => DropdownMenuItem(
+                              value: e,
+                              child: Text(
+                                e,
+                                style: TextStyle(fontSize: ResponsiveHelper.bodyFontSize(context)),
+                              ),
+                            ))
+                            .toList(),
+                        onChanged: (value) {
+                          setState(() => selectedLoai = value!);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: ngayController,
-                decoration: const InputDecoration(labelText: 'Ngày (dd/MM/yyyy)'),
-              ),
-              const SizedBox(height: 12),
-              DropdownButton<String>(
-                value: selectedLoai,
-                isExpanded: true,
-                items: ['Nghỉ lễ', 'Học bổng', 'Sự kiện', 'Thông báo chung']
-                    .map((e) => DropdownMenuItem(value: e, child: Text(e)))
-                    .toList(),
-                onChanged: (value) {
-                  setState(() => selectedLoai = value!);
-                },
+              SizedBox(height: ResponsiveHelper.paddingLarge(context)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Text(
+                      'Hủy',
+                      style: TextStyle(fontSize: ResponsiveHelper.bodyFontSize(context)),
+                    ),
+                  ),
+                  SizedBox(width: ResponsiveHelper.paddingSmall(context)),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (tieuDeController.text.isEmpty ||
+                          noiDungController.text.isEmpty ||
+                  ngayController.text.isEmpty) {
+                        _showNotification('Vui lòng điền đầy đủ thông tin!', isError: true);
+                        return;
+                      }
+
+                      if (editingIndex == null) {
+                        danhSachThongBao.add({
+                          'tieuDe': tieuDeController.text,
+                          'noiDung': noiDungController.text,
+                          'ngay': ngayController.text,
+                          'loai': selectedLoai,
+                        });
+                        _showNotification('Thêm thông báo thành công!');
+                      } else {
+                        danhSachThongBao[editingIndex!] = {
+                          'tieuDe': tieuDeController.text,
+                          'noiDung': noiDungController.text,
+                          'ngay': ngayController.text,
+                          'loai': selectedLoai,
+                        };
+                        _showNotification('Cập nhật thông báo thành công!');
+                      }
+
+                      _resetForm();
+                      setState(() {});
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      'Lưu',
+                      style: TextStyle(fontSize: ResponsiveHelper.bodyFontSize(context)),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
         ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Hủy'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              if (tieuDeController.text.isEmpty ||
-                  noiDungController.text.isEmpty ||
-                  ngayController.text.isEmpty) {
-                _showNotification('Vui lòng điền đầy đủ thông tin!', isError: true);
-                return;
-              }
-
-              if (editingIndex == null) {
-                danhSachThongBao.add({
-                  'tieuDe': tieuDeController.text,
-                  'noiDung': noiDungController.text,
-                  'ngay': ngayController.text,
-                  'loai': selectedLoai,
-                });
-                _showNotification('Thêm thông báo thành công!');
-              } else {
-                danhSachThongBao[editingIndex!] = {
-                  'tieuDe': tieuDeController.text,
-                  'noiDung': noiDungController.text,
-                  'ngay': ngayController.text,
-                  'loai': selectedLoai,
-                };
-                _showNotification('Cập nhật thông báo thành công!');
-              }
-
-              _resetForm();
-              setState(() {});
-              Navigator.pop(context);
-            },
-            child: const Text('Lưu'),
-          ),
-        ],
       ),
     );
   }
@@ -164,46 +236,88 @@ class _ThongBaoScreenState extends State<ThongBaoScreen> {
   void _deleteNotification(int index) {
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Xác nhận xóa'),
-        content: const Text('Bạn có chắc muốn xóa thông báo này?'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Hủy'),
+      builder: (context) => Dialog(
+        insetPadding: EdgeInsets.symmetric(
+          horizontal: ResponsiveHelper.paddingMedium(context),
+        ),
+        child: Container(
+          padding: EdgeInsets.all(ResponsiveHelper.paddingLarge(context)),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Xác nhận xóa',
+                style: TextStyle(
+                  fontSize: ResponsiveHelper.headingFontSize(context),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: ResponsiveHelper.paddingMedium(context)),
+              Text(
+                'Bạn có chắc muốn xóa thông báo này?',
+                style: TextStyle(fontSize: ResponsiveHelper.bodyFontSize(context)),
+              ),
+              SizedBox(height: ResponsiveHelper.paddingLarge(context)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Text(
+                      'Hủy',
+                      style: TextStyle(fontSize: ResponsiveHelper.bodyFontSize(context)),
+                    ),
+                  ),
+                  SizedBox(width: ResponsiveHelper.paddingSmall(context)),
+                  ElevatedButton(
+                    onPressed: () {
+                      danhSachThongBao.removeAt(index);
+                      _showNotification('Xóa thông báo thành công!');
+                      setState(() {});
+                      Navigator.pop(context);
+                    },
+                    style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                    child: Text(
+                      'Xóa',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: ResponsiveHelper.bodyFontSize(context),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
-          ElevatedButton(
-            onPressed: () {
-              danhSachThongBao.removeAt(index);
-              _showNotification('Xóa thông báo thành công!');
-              setState(() {});
-              Navigator.pop(context);
-            },
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-            child: const Text('Xóa', style: TextStyle(color: Colors.white)),
-          ),
-        ],
+        ),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = ResponsiveHelper.isMobile(context);
+    final padding = ResponsiveHelper.paddingMedium(context);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue[900],
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.amber, size: 30),
+          icon: Icon(Icons.arrow_back, color: Colors.amber, size: ResponsiveHelper.mediumIconSize(context)),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text(
+        title: Text(
           'THÔNG BÁO CHUNG',
-          style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            color: Colors.amber,
+            fontWeight: FontWeight.bold,
+            fontSize: ResponsiveHelper.headingFontSize(context),
+          ),
         ),
         centerTitle: true,
         actions: [
           IconButton(
-            icon: const Icon(Icons.add, color: Colors.amber, size: 28),
+            icon: Icon(Icons.add, color: Colors.amber, size: ResponsiveHelper.mediumIconSize(context)),
             onPressed: () => _showAddEditDialog(),
           ),
         ],
@@ -213,26 +327,28 @@ class _ThongBaoScreenState extends State<ThongBaoScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.notifications_none, size: 80, color: Colors.grey[300]),
-                  const SizedBox(height: 16),
+                  Icon(Icons.notifications_none, size: ResponsiveHelper.largeIconSize(context), color: Colors.grey[300]),
+                  SizedBox(height: ResponsiveHelper.paddingLarge(context)),
                   Text(
                     'Không có thông báo nào',
-                    style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                    style: TextStyle(fontSize: ResponsiveHelper.bodyFontSize(context), color: Colors.grey[600]),
                   ),
                 ],
               ),
             )
           : ListView.builder(
-              padding: const EdgeInsets.all(12),
+              padding: EdgeInsets.all(padding),
               itemCount: danhSachThongBao.length,
               itemBuilder: (context, index) {
                 final item = danhSachThongBao[index];
                 return Card(
                   elevation: 2,
-                  margin: const EdgeInsets.only(bottom: 12),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  margin: EdgeInsets.only(bottom: padding),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(ResponsiveHelper.borderRadiusMedium(context)),
+                  ),
                   child: Padding(
-                    padding: const EdgeInsets.all(16),
+                    padding: EdgeInsets.all(ResponsiveHelper.paddingMedium(context)),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -242,8 +358,14 @@ class _ThongBaoScreenState extends State<ThongBaoScreen> {
                             _buildTag(item['loai']!),
                             Row(
                               children: [
-                                Text(item['ngay']!, style: const TextStyle(color: Colors.grey, fontSize: 12)),
-                                const SizedBox(width: 8),
+                                Text(
+                                  item['ngay']!,
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: ResponsiveHelper.smallFontSize(context),
+                                  ),
+                                ),
+                                SizedBox(width: ResponsiveHelper.paddingSmall(context)),
                                 PopupMenuButton(
                                   itemBuilder: (context) => [
                                     PopupMenuItem(
@@ -275,9 +397,12 @@ class _ThongBaoScreenState extends State<ThongBaoScreen> {
                         const SizedBox(height: 10),
                         Text(
                           item['tieuDe']!,
-                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: ResponsiveHelper.bodyFontSize(context),
+                          ),
                         ),
-                        const SizedBox(height: 6),
+                        SizedBox(height: ResponsiveHelper.paddingSmall(context)),
                         Text(
                           item['noiDung']!,
                           style: TextStyle(color: Colors.grey[700]),
@@ -291,7 +416,7 @@ class _ThongBaoScreenState extends State<ThongBaoScreen> {
     );
   }
 
-  Widget _buildTag(String type) {
+  Widget _buildTag(String type, {BuildContext? context}) {
     Color bgColor;
     Color textColor;
     switch (type) {
@@ -312,9 +437,22 @@ class _ThongBaoScreenState extends State<ThongBaoScreen> {
         textColor = Colors.blue[700]!;
     }
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(color: bgColor, borderRadius: BorderRadius.circular(6)),
-      child: Text(type, style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: textColor)),
+      padding: EdgeInsets.symmetric(
+        horizontal: ResponsiveHelper.paddingSmall(context ?? this.context),
+        vertical: ResponsiveHelper.paddingXSmall(context ?? this.context),
+      ),
+      decoration: BoxDecoration(
+        color: bgColor,
+        borderRadius: BorderRadius.circular(ResponsiveHelper.borderRadiusSmall(context ?? this.context)),
+      ),
+      child: Text(
+        type,
+        style: TextStyle(
+          fontSize: ResponsiveHelper.smallFontSize(context ?? this.context),
+          fontWeight: FontWeight.bold,
+          color: textColor,
+        ),
+      ),
     );
   }
 }

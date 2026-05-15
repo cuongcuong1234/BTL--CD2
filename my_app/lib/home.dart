@@ -9,11 +9,10 @@ import 'xem_diem_chi_tiet.dart';
 import 'thong_bao.dart';
 import 'hoc_phi.dart';
 import 'chuong_trinh_dao_tao.dart';
-import 'lich_hoc_sv.dart';
 import 'ho_so_ca_nhan.dart';
-import 'quan_ly_lich_hoc.dart';
 import 'quan_ly_diem.dart';
 import 'quan_ly_ho_so.dart';
+import 'utils/responsive_helper.dart';
 
 class home extends StatelessWidget {
   final String userRole;
@@ -312,22 +311,6 @@ class home extends StatelessWidget {
       if (userRole == 'student')
         _buildMenuItem(
           context: context,
-          icon: Icons.schedule_outlined,
-          label: 'Lịch Học',
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => LichHocSVScreen(maSV: username),
-              ),
-            );
-          },
-        ),
-
-      // Chỉ hiển thị cho student
-      if (userRole == 'student')
-        _buildMenuItem(
-          context: context,
           icon: Icons.account_circle_outlined,
           label: 'Hồ Sơ',
           onTap: () {
@@ -356,20 +339,21 @@ class home extends StatelessWidget {
           },
         ),
 
-      // Hiển thị cho tất cả
-      _buildMenuItem(
-        context: context,
-        icon: Icons.calendar_month_outlined,
-        label: 'Thời Khóa Biểu',
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ThoiKhoaBieuScreen(userRole: userRole),
-            ),
-          );
-        },
-      ),
+      // Hiển thị cho student và giảng viên
+      if (userRole == 'student' || userRole == 'lecturer')
+        _buildMenuItem(
+          context: context,
+          icon: Icons.calendar_month_outlined,
+          label: 'Thời Khóa Biểu',
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ThoiKhoaBieuScreen(userRole: userRole),
+              ),
+            );
+          },
+        ),
 
       // Hiển thị cho tất cả
       _buildMenuItem(
@@ -401,24 +385,8 @@ class home extends StatelessWidget {
         },
       ),
 
-      // Quản lý lịch học (Admin)
-      if (userRole == 'admin')
-        _buildMenuItem(
-          context: context,
-          icon: Icons.schedule,
-          label: 'QL Lịch Học',
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const QuanLyLichHocScreen(),
-              ),
-            );
-          },
-        ),
-
-      // Quản lý điểm (Admin)
-      if (userRole == 'admin')
+      // Quản lý điểm (Giảng viên và Admin cũ)
+      if (userRole == 'lecturer')
         _buildMenuItem(
           context: context,
           icon: Icons.grade,

@@ -37,6 +37,14 @@ void main() async {
   } catch (e) {
     print('❌ Lỗi thời khóa biểu: $e');
   }
+
+  // Khởi tạo tài khoản giảng viên
+  try {
+    await DatabaseService().initializeLecturerAccounts();
+    print('✅ Tài khoản giảng viên initialized');
+  } catch (e) {
+    print('❌ Lỗi tài khoản giảng viên: $e');
+  }
   
   print('🎉 Khởi tạo xong!');
   

@@ -100,6 +100,102 @@ class DatabaseService {
               });
         }
 
+        // ===== TẠO 10 TÀI KHOẢN GIẢNG VIÊN MẶC ĐỊNH =====
+        final lecturersData = [
+          {
+            'maTaiKhoan': 'GV001',
+            'tenGV': 'Thầy Nguyễn Văn A',
+            'email': 'nguyenvana@gmail.com',
+            'boMon': 'Lập trình',
+            'avatar': 'assets/avatar_gv1.png',
+            'color': 'blue'
+          },
+          {
+            'maTaiKhoan': 'GV002',
+            'tenGV': 'Cô Trần Thị B',
+            'email': 'tranthib@gmail.com',
+            'boMon': 'Cấu trúc dữ liệu',
+            'avatar': 'assets/avatar_gv2.png',
+            'color': 'pink'
+          },
+          {
+            'maTaiKhoan': 'GV003',
+            'tenGV': 'Thầy Lê Văn C',
+            'email': 'levanc@gmail.com',
+            'boMon': 'Cơ sở dữ liệu',
+            'avatar': 'assets/avatar_gv3.png',
+            'color': 'teal'
+          },
+          {
+            'maTaiKhoan': 'GV004',
+            'tenGV': 'Thầy Hoàng Văn D',
+            'email': 'hoangvand@gmail.com',
+            'boMon': 'Mạng máy tính',
+            'avatar': 'assets/avatar_gv4.png',
+            'color': 'orange'
+          },
+          {
+            'maTaiKhoan': 'GV005',
+            'tenGV': 'Cô Ngô Thị E',
+            'email': 'ngothie@gmail.com',
+            'boMon': 'Lập trình C++',
+            'avatar': 'assets/avatar_gv5.png',
+            'color': 'purple'
+          },
+          {
+            'maTaiKhoan': 'GV006',
+            'tenGV': 'Thầy Phạm Văn F',
+            'email': 'phamvanf@gmail.com',
+            'boMon': 'Web Development',
+            'avatar': 'assets/avatar_gv6.png',
+            'color': 'cyan'
+          },
+          {
+            'maTaiKhoan': 'GV007',
+            'tenGV': 'Cô Vũ Thị G',
+            'email': 'vuthig@gmail.com',
+            'boMon': 'Mobile Development',
+            'avatar': 'assets/avatar_gv7.png',
+            'color': 'lime'
+          },
+          {
+            'maTaiKhoan': 'GV008',
+            'tenGV': 'Thầy Đặng Văn H',
+            'email': 'dangvanh@gmail.com',
+            'boMon': 'Hệ thống thông tin',
+            'avatar': 'assets/avatar_gv8.png',
+            'color': 'amber'
+          },
+          {
+            'maTaiKhoan': 'GV009',
+            'tenGV': 'Cô Bùi Thị I',
+            'email': 'buithii@gmail.com',
+            'boMon': 'Lý thuyết tính toán',
+            'avatar': 'assets/avatar_gv9.png',
+            'color': 'indigo'
+          },
+          {
+            'maTaiKhoan': 'GV010',
+            'tenGV': 'Thầy Tô Văn K',
+            'email': 'tovank@gmail.com',
+            'boMon': 'Kỹ thuật phần mềm',
+            'avatar': 'assets/avatar_gv10.png',
+            'color': 'grey'
+          },
+        ];
+
+        for (var lecturer in lecturersData) {
+          await _firestore
+              .collection(accountsCollection)
+              .doc(lecturer['maTaiKhoan'] as String)
+              .set({
+                ...lecturer,
+                'matKhau': '123456',
+                'vaiTro': 'lecturer',
+                'ngayTao': FieldValue.serverTimestamp(),
+              });
+        }
+
         print('✅ Đã tạo tài khoản mặc định');
 
         // ===== TẠO DỮ LIỆU THỜI KHÓA BIỂU MẶC ĐỊNH =====
@@ -254,6 +350,120 @@ class DatabaseService {
       }
     } catch (e) {
       print('❌ Lỗi khởi tạo tài khoản: $e');
+    }
+  }
+
+  /// Khởi tạo 10 tài khoản giảng viên
+  Future<void> initializeLecturerAccounts() async {
+    try {
+      final lecturersData = [
+        {
+          'maTaiKhoan': 'GV001',
+          'tenGV': 'Thầy Nguyễn Văn A',
+          'email': 'nguyenvana@gmail.com',
+          'boMon': 'Lập trình',
+          'avatar': 'assets/avatar_gv1.png',
+          'color': 'blue'
+        },
+        {
+          'maTaiKhoan': 'GV002',
+          'tenGV': 'Cô Trần Thị B',
+          'email': 'tranthib@gmail.com',
+          'boMon': 'Cấu trúc dữ liệu',
+          'avatar': 'assets/avatar_gv2.png',
+          'color': 'pink'
+        },
+        {
+          'maTaiKhoan': 'GV003',
+          'tenGV': 'Thầy Lê Văn C',
+          'email': 'levanc@gmail.com',
+          'boMon': 'Cơ sở dữ liệu',
+          'avatar': 'assets/avatar_gv3.png',
+          'color': 'teal'
+        },
+        {
+          'maTaiKhoan': 'GV004',
+          'tenGV': 'Thầy Hoàng Văn D',
+          'email': 'hoangvand@gmail.com',
+          'boMon': 'Mạng máy tính',
+          'avatar': 'assets/avatar_gv4.png',
+          'color': 'orange'
+        },
+        {
+          'maTaiKhoan': 'GV005',
+          'tenGV': 'Cô Ngô Thị E',
+          'email': 'ngothie@gmail.com',
+          'boMon': 'Lập trình C++',
+          'avatar': 'assets/avatar_gv5.png',
+          'color': 'purple'
+        },
+        {
+          'maTaiKhoan': 'GV006',
+          'tenGV': 'Thầy Phạm Văn F',
+          'email': 'phamvanf@gmail.com',
+          'boMon': 'Web Development',
+          'avatar': 'assets/avatar_gv6.png',
+          'color': 'cyan'
+        },
+        {
+          'maTaiKhoan': 'GV007',
+          'tenGV': 'Cô Vũ Thị G',
+          'email': 'vuthig@gmail.com',
+          'boMon': 'Mobile Development',
+          'avatar': 'assets/avatar_gv7.png',
+          'color': 'lime'
+        },
+        {
+          'maTaiKhoan': 'GV008',
+          'tenGV': 'Thầy Đặng Văn H',
+          'email': 'dangvanh@gmail.com',
+          'boMon': 'Hệ thống thông tin',
+          'avatar': 'assets/avatar_gv8.png',
+          'color': 'amber'
+        },
+        {
+          'maTaiKhoan': 'GV009',
+          'tenGV': 'Cô Bùi Thị I',
+          'email': 'buithii@gmail.com',
+          'boMon': 'Lý thuyết tính toán',
+          'avatar': 'assets/avatar_gv9.png',
+          'color': 'indigo'
+        },
+        {
+          'maTaiKhoan': 'GV010',
+          'tenGV': 'Thầy Tô Văn K',
+          'email': 'tovank@gmail.com',
+          'boMon': 'Kỹ thuật phần mềm',
+          'avatar': 'assets/avatar_gv10.png',
+          'color': 'grey'
+        },
+      ];
+
+      int createdCount = 0;
+      for (var lecturer in lecturersData) {
+        final maTaiKhoan = lecturer['maTaiKhoan'] as String;
+        final existing = await _firestore
+            .collection(accountsCollection)
+            .doc(maTaiKhoan)
+            .get();
+
+        if (!existing.exists) {
+          await _firestore
+              .collection(accountsCollection)
+              .doc(maTaiKhoan)
+              .set({
+                ...lecturer,
+                'matKhau': '123456',
+                'vaiTro': 'lecturer',
+                'ngayTao': FieldValue.serverTimestamp(),
+              });
+          createdCount++;
+        }
+      }
+
+      print('✅ Đã tạo/cập nhật giảng viên (tạo mới: $createdCount tài khoản)');
+    } catch (e) {
+      print('❌ Lỗi khởi tạo tài khoản giảng viên: $e');
     }
   }
 
